@@ -3,11 +3,17 @@
 <head>
 	<title> Director Test </title>
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<style>
 		.directorbin {
 			width: 70%;
-			height: 30%;
+			height: 200px;
 			float: bottom;
+		}
+		
+		line {
+			stroke: black;
+			stroke-width: 5;
 		}
 
 	
@@ -16,6 +22,8 @@
 <body>
 
 <div id="main" style="width:100%;height:100%;"></div>
+
+
 
 <script>
 
@@ -31,29 +39,45 @@
 		.append("svg")
 		.attr("class","directorbin");
 	
-	//Go a level deeper. Make an svg element for each film
-	// Director --> [film1, film2, ... ]
-	var groups=	bins.selectAll("rect")
-			.data(function(d){ return d.films;})
-			.enter().append("svg")
-			.attr("width",40).attr("height",100)
-			.attr("x", function(d,i){return i*100;}).attr("y",0)
-			;
+	//gets height and width of each bin
+	var binheight = $(".directorbin").height();
+	var binwidth =	$(".directorbin").width();
 	
-	//Put a rectangle for each film
-	groups.append("rect")
-		.attr("width",40).attr("height",100)
-		.attr("x", 0).attr("y",0)
-		.style("fill","green")
+	
+	//Add lines to each bin	
+	bins.selectAll("lines")
+		.data(["Director","Writer","Producer","Editor","Actor"])
+		.enter().append("line")
+		.attr("x1",0)
+		.attr("y1", function(d,i){return binheight*(i+1)/6.0 ;})
+		.attr("y2",function(d,i){return binheight*(i+1)/6.0 ;})
+		.attr("x2", binwidth)
 		;
+		
+	
+	//Go a level deeper. Make a group element for each film
+	// Director --> [film1, film2, ... ]
+	//Make a scale for each bin
+	//Note len goes up a level to get a parameter for the scale
+	var groups=	bins.selectAll("svg")
+			.data(function(d){ return d.films;})
+			.enter().append("g")
+			.attr("transform",
+				function(d,i){
+					var len = d3.select(this.parentNode).data()[0].nofilms ;
+					
+					return "translate("+ scaleMaker(i,binwidth,len)+",0)" ;
+				}
+			)
+			;
 	
 	//Go a level deeper. Put circles for each credit
 	//Director --> [ [film1]-->[credits] , [film2]-->[credits], ... ]
 	groups.selectAll("circ")
 		.data(function(d){return d.credits;})
 		.enter().append("circle")
-		.attr("r",20).attr("cx",10)
-		.attr("cy",function(d){return separateCircles(d);})
+		.attr("r",10).attr("cx",20)
+		.attr("cy",function(d){return separateCircles(d, binheight);})
 		.attr("class",function(d){ return d;})
 		.style("fill","blue")
 		;
@@ -61,14 +85,28 @@
 	});
 
 
-function separateCircles(d){
+function separateCircles(d, h){
+	var pos = h/6.0;
 	if ( d == "director"){ 
-		return 0;
-	} else if ( d == "editor"){
-		return 45;
-	} else if (d == "writer"){
-		return 90;
+		return pos;
+	} else if ( d == "writer"){
+		return pos*2;
+	} else if (d == "editor"){
+		return pos*3;
+	} else if (d == "producer"){
+		return pos *4;
+	} else if ( d == "actor"){
+		return pos*5;
 	}
+}
+
+function scaleMaker(i,w,l){
+
+	var scale = d3.scale.linear()
+					.domain([0,l])
+					.range([0,w])
+					;
+	return scale(i);
 }
 </script>
 </body>

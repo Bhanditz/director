@@ -1,5 +1,6 @@
 [{
 	"name" : "Director1",
+	"nofilms": 2,
 	"films": [{
 		"title": "The very first film",
 		"year":	1993,
@@ -18,12 +19,29 @@
 		}]
 },{
 	"name": "Director2",
+	"nofilms": 3,
 	"films": [{
 		"title": "My first film",
 		"year":	1840,
 		"credits": [
 			"director",
 			"writer"
+			]
+		}, {
+		"title": "Film Number Twooo",
+		"year":	1870,
+		"credits": [
+			"actor",
+			"producer"
+			]
+		}, {
+		"title": "My first film",
+		"year":	1840,
+		"credits": [
+			"director",
+			"writer",
+			"actor",
+			"editor"
 			]
 		}]
 }]
