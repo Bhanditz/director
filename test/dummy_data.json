@@ -1,0 +1,29 @@
+[{
+	"name" : "Director1",
+	"films": [{
+		"title": "The very first film",
+		"year":	1993,
+		"credits": [
+			"director",
+			"editor"
+			]
+		}, {
+		"title": "Now the next one",
+		"year": 1995,
+		"credits": [
+			"director",
+			"editor",
+			"writer"
+			]
+		}]
+},{
+	"name": "Director2",
+	"films": [{
+		"title": "My first film",
+		"year":	1840,
+		"credits": [
+			"director",
+			"writer"
+			]
+		}]
+}]

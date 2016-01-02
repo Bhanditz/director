@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Director Test </title>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<style>
+		.directorbin {
+			width: 70%;
+			height: 30%;
+			float: bottom;
+		}
+
+	
+	</style>
+</head>
+<body>
+
+<div id="main" style="width:100%;height:100%;"></div>
+
+<script>
+
+	var canvas = d3.select("#main");
+	
+	
+	d3.json("dummy_data.json", function(error, dumdata){
+	
+	//Make an svg element for each director
+	var bins = canvas.selectAll(".directorbin")
+		.data(dumdata)
+		.enter()
+		.append("svg")
+		.attr("class","directorbin");
+	
+	//Go a level deeper. Make an svg element for each film
+	// Director --> [film1, film2, ... ]
+	var groups=	bins.selectAll("rect")
+			.data(function(d){ return d.films;})
+			.enter().append("svg")
+			.attr("width",40).attr("height",100)
+			.attr("x", function(d,i){return i*100;}).attr("y",0)
+			;
+	
+	//Put a rectangle for each film
+	groups.append("rect")
+		.attr("width",40).attr("height",100)
+		.attr("x", 0).attr("y",0)
+		.style("fill","green")
+		;
+	
+	//Go a level deeper. Put circles for each credit
+	//Director --> [ [film1]-->[credits] , [film2]-->[credits], ... ]
+	groups.selectAll("circ")
+		.data(function(d){return d.credits;})
+		.enter().append("circle")
+		.attr("r",20).attr("cx",10)
+		.attr("cy",function(d){return separateCircles(d);})
+		.attr("class",function(d){ return d;})
+		.style("fill","blue")
+		;
+			
+	});
+
+
+function separateCircles(d){
+	if ( d == "director"){ 
+		return 0;
+	} else if ( d == "editor"){
+		return 45;
+	} else if (d == "writer"){
+		return 90;
+	}
+}
+</script>
+</body>
+</html>
