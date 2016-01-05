@@ -15,7 +15,7 @@ def listBuilder(poplst, dirlist, role):
                     name_sep = line.split("\t\t")       #split director name
                     title_sep = name_sep[1].split("(",1) #split title
                     poplst.append(name_sep[0])          #add director name
-                    dummy=[title_sep[0], int(title_sep[1][:4])]
+                    dummy=[title_sep[0][:-1], int(title_sep[1][:4])]
                     poplst.append(dummy)               #add [first title, year]
                     cont = True
             if cont== True:         #works for lines other than the first one
@@ -41,4 +41,8 @@ def filmEnter(lst, credit, dum, entry, master):
     next_index = dum.index(lst) +1
     if type(dum[next_index]) == str:
         master.append(entry)
+
+
+
+
 
