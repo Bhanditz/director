@@ -1,8 +1,29 @@
+body{
+	background-color: #16171a;
+}
+
+#main {
+	width: 100%;
+	height: 100%;
+}
+
+#vis {
+	width: 75%;
+	height: 200px;
+	float: left;
+	margin-left: 10px;
+}
+
 .directorbin {
-			width: 75%;
-			height: 200px;
-			float: bottom;
-		}
+	width: 100%;
+	height: 100%;
+	float: bottom;
+}
+		
+.dirname, text {
+	color: grey;
+	font-size: 1.0em;
+}
 		
 line {
 	stroke: grey;

@@ -1,20 +1,35 @@
 function draw(){
-var canvas = d3.select("#main")
+var vis =	d3.select("#main")
+var canvas = vis.select("#vis")
 
 d3.json("data/data.json", function(error, newdata){
 	
+//Make svg element for each director
 var bins = canvas.selectAll(".directorbin")
 			.data(newdata)
 			.enter().append("svg")
 			.attr("class", "directorbin")
+			.attr("transform","translate(30,0)")
 			;
-
+			
+			
+//Gets height and width of each director svg
 var binheight = $(".directorbin").height()
 	binwidth =	$(".directorbin").width()
-	;
+	;			
+	
+	
+	bins.append("text").text(function(d){return d.name;})
+		.attr("transform","translate(-15,100) rotate(270)")
+		.attr("text-anchor","middle")
+		.attr("class","dirname")
+		;
+	
+
 	
 var roles = ["Director", "Writer", "Producer", "Editor", "Actor"];
-	
+
+//Add lines to each bin	
 	bins.selectAll("lines")
 		.data(roles)
 		.enter().append("line")
@@ -23,6 +38,10 @@ var roles = ["Director", "Writer", "Producer", "Editor", "Actor"];
 		.attr("y2", function(d,i){return binheight*(i+1)/6.0 ;})
 		;
 		
+//Make group for each film
+//Director --> [film1, film2, ... ]
+//scaleMaker makes a scale for each bin
+//Note that len goes up a level with select(this.parentNode)
 var groups =bins.selectAll("svg")
 				.data(function(d){return d.films;})
 				.enter().append("g")
@@ -73,7 +92,7 @@ function circleColor(d){
 
 function scaleMaker(i,w,l){
 	var scale = d3.scale.linear()
-					.domain([0,l])
+					.domain([0,l-1])
 					.range([0,w])
 					;
 	return scale(i);
