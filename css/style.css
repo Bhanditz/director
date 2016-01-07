@@ -1,0 +1,10 @@
+.directorbin {
+			width: 75%;
+			height: 200px;
+			float: bottom;
+		}
+		
+line {
+	stroke: grey;
+	stroke-width: 2.5;
+}

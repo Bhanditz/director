@@ -79,7 +79,7 @@
 		.attr("r",10).attr("cx",20)
 		.attr("cy",function(d){return separateCircles(d, binheight);})
 		.attr("class",function(d){ return d;})
-		.style("fill","blue")
+		.style("fill",function(d){return circleColor(d);})
 		;
 			
 	});
@@ -97,6 +97,20 @@ function separateCircles(d, h){
 		return pos *4;
 	} else if ( d == "actor"){
 		return pos*5;
+	}
+}
+
+function circleColor(d){
+	if (d == 'director'){
+		return "blue";
+	} else if ( d == "writer"){
+		return "green" ;
+	} else if ( d == "editor"){
+		return "yellow";
+	} else if (d == "producer"){
+		return "orange";
+	} else if (d == "actor"){
+		return "red";
 	}
 }
 
