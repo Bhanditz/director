@@ -18,7 +18,6 @@ def listBuilder(poplst, dirlist, role):
                         name_sep = line.split("\t\t")     #split director name
                     else:
                         name_sep = line.split('\t')
-                    #print name_sep
                     title_sep = name_sep[1].split("(",1) #split title
                     poplst.append(name_sep[0])          #add director name
                     cont = True
@@ -84,7 +83,7 @@ def dictAdd(dum, master, role):
                     templst=[]
                     for titles in master[dirindex]['films']:
                         templst.append(titles['title'])
-                    print templst
+                    #print templst
                     #cont = True
                     break
         if cont == True:
