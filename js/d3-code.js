@@ -7,30 +7,32 @@ d3.json("data/data.json", function(error, newdata){
 //Make svg element for each director
 var bins = canvas.selectAll(".directorbin")
 			.data(newdata)
-			.enter().append("svg")
+			//.enter().append("svg")
+			.enter().append("div")
 			.attr("class", "directorbin")
-			.attr("transform","translate(30,0)")
 			;
 			
 			
-//Gets height and width of each director svg
-var binheight = $(".directorbin").height()
-	binwidth =	$(".directorbin").width()
-	;			
+
 	
 	
 	bins.append("text").text(function(d){return d.name;})
-		.attr("transform","translate(-15,100) rotate(270)")
 		.attr("text-anchor","middle")
 		.attr("class","dirname")
 		;
+		
+var directors = bins.append("svg").attr("class","directorsvg");
 	
-
+//Gets height and width of each director svg
+var binheight = $(".directorsvg").height()
+	binwidth =	$(".directorsvg").width()
+	;			
 	
 var roles = ["Director", "Writer", "Producer", "Editor", "Actor"];
 
-//Add lines to each bin	
-	bins.selectAll("lines")
+//Add lines to each bin
+//	Currently not in use, but they're there
+	directors.selectAll("lines")
 		.data(roles)
 		.enter().append("line")
 		.attr("x1",0).attr("x2",binwidth)
@@ -42,13 +44,36 @@ var roles = ["Director", "Writer", "Producer", "Editor", "Actor"];
 //Director --> [film1, film2, ... ]
 //scaleMaker makes a scale for each bin
 //Note that len goes up a level with select(this.parentNode)
-var groups =bins.selectAll("svg")
+var groups =directors.selectAll("svg")
 				.data(function(d){return d.films;})
 				.enter().append("g")
 				.attr("transform", function(d,i){
 					var len = d3.select(this.parentNode).data()[0].nofilms;
 					return "translate(" + scaleMaker(i,binwidth,len)+",0)";
-				});
+				})
+				.on("mouseover", function(d){
+					
+					var infohold = d3.select("#credit")
+					var texthold = infohold.append("svg")
+									.attr("width","100%").attr("height","100%")
+									.attr("class","detail")
+									.append("text").attr("x",10).attr("y",10);
+					
+					var dirname = d3.select(this.parentNode).data()[0].name;
+					
+					texthold.append("tspan").text(dirname).attr("x",10).attr("dy",20);				
+					texthold.append("tspan").text(d.title).attr("x",10).attr("dy",30);
+					texthold.append("tspan").text(d.year).attr("x",10).attr("dy",20);
+					texthold.append("tspan").text(d.credits).attr("x",10).attr("dy",20);
+					
+					
+				})
+				.on("mouseout", function(d){
+					d3.selectAll(".detail").remove();
+				})
+				;
+				
+
 				
 groups.selectAll("circ")
 	.data(function(d){return d.credits;})
@@ -58,6 +83,8 @@ groups.selectAll("circ")
 	.attr("class", function(d){return d;})
 	.style("fill",function(d){return circleColor(d);})
 	;
+	
+	
 });
 }
 
@@ -78,22 +105,22 @@ function separateCircles(d, h){
 
 function circleColor(d){
 	if (d == 'director'){
-		return "blue";
+		return "#1BCCF8";//"#0074E8";1D50CE
 	} else if ( d == "writer"){
-		return "green" ;
+		return "#FFAD07" ;
 	} else if ( d == "editor"){
-		return "yellow";
+		return "#F5F756";
 	} else if (d == "producer"){
-		return "orange";
+		return "#19D425";
 	} else if (d == "actor"){
-		return "red";
+		return "#FC0066";
 	}
 }
 
 function scaleMaker(i,w,l){
 	var scale = d3.scale.linear()
 					.domain([0,l-1])
-					.range([0,w])
+					.range([.05*w,.95*w])
 					;
 	return scale(i);
 }
