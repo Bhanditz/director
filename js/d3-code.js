@@ -11,7 +11,9 @@ var bins = canvas.selectAll(".directorbin")
 			.enter().append("div")
 			.attr("class", "directorbin")
 			;
-			
+var dirheight = $(".directorbin").height();
+
+	bins.style("top",function(d,i){return dirheight*i+"px";});
 			
 
 	

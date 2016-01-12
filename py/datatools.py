@@ -14,10 +14,15 @@ def listBuilder(poplst, dirlist, role):
                 if elmt in line:    #locates a director
                     if '(I)\t' in line:
                         name_sep = line.split('(I)\t')
+                    if '|' in line:
+                        name_sep = line.split("|",1)
                     if '\t\t' in line:
                         name_sep = line.split("\t\t")     #split director name
                     else:
                         name_sep = line.split('\t')
+                    print line
+                    print name_sep
+                    print "---------------------------"
                     title_sep = name_sep[1].split("(",1) #split title
                     poplst.append(name_sep[0])          #add director name
                     cont = True
@@ -36,7 +41,10 @@ def listBuilder(poplst, dirlist, role):
                         continue
                     year_sep = title_sep[1].split("(",1)
                     #print year_sep
-                    dumentry = [year_sep[0][:-1], int(year_sep[1][:4])]
+                    try:
+                        dumentry = [year_sep[0][:-1], int(year_sep[1][:4])]
+                    except ValueError:
+                        continue
                     poplst.append(dumentry)             #add [title, year]
     poplst.append('-')      #'-' indicates end of list
 

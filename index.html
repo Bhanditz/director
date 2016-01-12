@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
 <html>
 <head>
 	<title> Director Vis</title>
@@ -8,18 +9,32 @@
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="js/d3-code.js"></script>
+	<script src="js/legend.js"></script>
+	<script src="js/sortfuncs.js"></script>
 
 </head>
 <body>
 	<div id="main">
 		<div id="vis"></div>
 		<div id="info">
+			<div id="legend"></div>
 			<div id="credit"></div>
+			<div id="sorting">
+				<ul>
+					<li><button onclick="sorterFilm()"> Number of films </button></li>
+					<li><button onclick="sorterDir()"> Directing credits </button></li>
+					<li><button onclick="sorterWri()"> Writing credits </button></li>
+					<li><button onclick="sorterEdi()"> Editing credits </button></li>
+					<li><button onclick="sorterPro()"> Producing credits </button></li>
+					<li><button onclick="sorterAct()"> Acting credits </button></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	
 	<script>
 	draw();
+	makeLegend();
 	</script>
 </body>
 </html>
