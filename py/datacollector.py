@@ -5,9 +5,11 @@ directors=["Chaplin, Charles", "Eastwood, Clint", "Kurosawa, Akira",
 "Scorsese, Martin", "Coen, Ethan", "Kubrick, Stanley", "Welles, Orson",
 "Allen, Woody", "Spielberg, Steven","Hitchcock, Alfred (I)", "Bergman, Ingmar",
 "Godard, Jean-Luc", "Fellini, Federico", "Tarantino, Quentin",
-"Keaton, Buster (I)", "Bigelow, Kathryn", "Ephron, Nora", "Heckerling, Amy",
+"Keaton, Buster (I)", "Coppola, Sofia", "Ephron, Nora", "Heckerling, Amy",
 "Lang, Fritz (I)", "Renoir, Jean", "Herzog, Werner (I)",
-"von Trier, Lars", "Rodriguez, Robert (I)"]
+"von Trier, Lars", "Rodriguez, Robert (I)", "Hawks, Howard", "Wong, Kar-wai"]
+
+female=["Ephron, Nora", "Heckerling, Amy", "Coppola, Sofia"]
 
 json_master=[]
 
@@ -24,6 +26,7 @@ listBuilder(produm, directors, 'producer')
 listBuilder(edidum, directors, 'editor')
 listBuilder(wridum, directors, 'writer')
 listBuilder(actdum, directors, 'actor')
+listBuilder(actdum, female, 'actresse') #add actress credits
 
 
 
@@ -68,9 +71,12 @@ for elmt in json_master:
 clearlst=[]
 cleardir=directors
 
-for elmt in json_master:
+for elmt in json_master:        #gets rid of doubles
     if elmt["name"] in cleardir:
         cleardir.remove(elmt['name'])
+        if "(I)" in elmt['name']:
+            ridI=elmt['name'].split("(",1)
+            elmt['name']= ridI[0][:-1] #gets rid of (I)
         clearlst.append(elmt)
 
 json_master=clearlst
@@ -79,12 +85,3 @@ json_master=clearlst
 with io.open('data.json','w', encoding = 'utf-8') as f:
     data = json.dumps(json_master, ensure_ascii=False).decode('iso-8859-1')
     f.write(data)
-
-
-
-
-
-
-
-
-

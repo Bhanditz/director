@@ -12,8 +12,6 @@ def listBuilder(poplst, dirlist, role):
         for line in fileobject:     #goes line by line in file
             for elmt in dirlist:    #loops through names of directors
                 if elmt in line:    #locates a director
-                    #if '(I)\t' in line:
-                    #    name_sep = line.split('(I)\t')
                     if '\t\t' in line:
                         name_sep = line.split("\t\t")     #split director name
                     else:
@@ -113,32 +111,6 @@ def dictAdd(dum, master, role):
                # master[dirindex]["films"][find]['credits'].append('role')
             else:
                 filmEnter(elmt, role, dum, master[dirindex], master, False)
-
-
-
-            '''
-            for film in master[dirindex]["films"]: #runs through directors films
-                if elmt[0] == film["title"]:
-                    if role in film["credits"]:
-                        break
-                    film['credits'].append(role)
-                    #print elmt[0], film['credits']
-                    failno = 0
-                    break
-                failno = failno +1
-
-
-        print "fail:", failno
-        print "total:", tempfilms
-        print '---------------------------------'
-        if failno == tempfilms:
-            #print elmt, "new film", role
-            print '--------------------------------------',role
-            filmEnter(elmt, role, dum, master[dirindex], master)
-        next_index = dum.index(elmt)+1
-        if type(dum[next_index]) == str:
-            cont = False
-'''
 
 
 
