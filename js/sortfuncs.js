@@ -1,3 +1,15 @@
+function sorterAlpha(){
+	var sortbins = d3.selectAll(".directorbin")
+		.sort(function(a,b){
+			return d3.ascending(a.name,b.name)
+			;})
+		.transition().duration("3000")
+		.style("top", function(d,i){
+			return 150*i +"px";
+		})
+		;
+}
+
 function sorterFilm(){
 	var sortbins = d3.selectAll(".directorbin")
 		.sort(function(a,b){
@@ -5,7 +17,7 @@ function sorterFilm(){
 			;})
 		.transition().duration("3000")
 		.style("top", function(d,i){
-			return 140*i +"px";
+			return 150*i +"px";
 		})
 		;
 }
@@ -17,7 +29,7 @@ function sorterDir(){
 			;})
 		.transition().duration("3000")
 		.style("top", function(d,i){
-			return 140*i +"px";
+			return 150*i +"px";
 		})
 		;
 }
@@ -29,7 +41,7 @@ function sorterWri(){
 			;})
 		.transition().duration("3000")
 		.style("top", function(d,i){
-			return 140*i +"px";
+			return 150*i +"px";
 		})
 		;
 }
@@ -41,7 +53,7 @@ function sorterEdi(){
 			;})
 		.transition().duration("3000")
 		.style("top", function(d,i){
-			return 140*i +"px";
+			return 150*i +"px";
 		})
 		;
 }
@@ -53,7 +65,7 @@ function sorterPro(){
 			;})
 		.transition().duration("3000")
 		.style("top", function(d,i){
-			return 140*i +"px";
+			return 150*i +"px";
 		})
 		;
 }
@@ -65,7 +77,7 @@ function sorterAct(){
 			;})
 		.transition().duration("3000")
 		.style("top", function(d,i){
-			return 140*i +"px";
+			return 150*i +"px";
 		})
 		;
 }

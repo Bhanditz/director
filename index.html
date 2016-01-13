@@ -15,19 +15,50 @@
 </head>
 <body>
 	<div id="main">
-		<div id="vis"></div>
+		<div id="body">
+			<div id="intro" align="center">
+				<h1> Careers of Directors</h1>
+				<text style="color:black;">In making a film, directors do a little bit of everything. They get behind the camera, they work with the editors, and communicate with actors. Some directors have a particularly deep involvement in their films&mdash;sometimes they're a producer or an actor. Here we have the profiles of several directors; each of their films are ordered chronologically, and you can get more information on a film if you hover over the dots. There are 25 directors from a variety of countries and times periods.
+				</text>
+			
+			</div>
+			<div id="vis"></div>
+		<div>
 		<div id="info">
 			<div id="legend"></div>
 			<div id="credit"></div>
 			<div id="sorting">
-				<ul>
-					<li><button onclick="sorterFilm()"> Number of films </button></li>
-					<li><button onclick="sorterDir()"> Directing credits </button></li>
-					<li><button onclick="sorterWri()"> Writing credits </button></li>
-					<li><button onclick="sorterEdi()"> Editing credits </button></li>
-					<li><button onclick="sorterPro()"> Producing credits </button></li>
-					<li><button onclick="sorterAct()"> Acting credits </button></li>
-				</ul>
+				<text> Sort by:</text>
+				<div id="sortbuttons">
+					<ul>
+						<li><button onclick="sorterAlpha()"> Alphabetical </button></li>
+						<li><button onclick="sorterFilm()"> Number of films </button></li>
+						<li><button class="edibutton" onclick="sorterEdi()"> Editing credits </button></li>	
+						<li><button class="probutton" onclick="sorterPro()"> Producing credits </button></li>
+						<li><button class="wributton" onclick="sorterWri()"> Writing credits </button></li>
+						<li><button class="dirbutton" onclick="sorterDir()"> Directing credits </button></li>			
+						<li><button class="actbutton" onclick="sorterAct()"> Acting credits </button></li>
+						
+					</ul>
+				</div>
+			</div>
+			<div id="explain">
+				<div style="position:relative;left:10px;top:5px;">
+					<text style="color:black;">
+					The data was taken from 
+					<a href="ftp://ftp.fu-berlin.de/pub/misc/movies/database/" target="blank_">Imdb</a>,
+					and visualized with <a href="http://d3js.org/" target="blank"> d3.js</a>. You can
+					find out more about this project 
+					<a href="https://www.sccs.swarthmore.edu/users/16/ptraino1/directors.html" target="blank_">here</a>. 
+					If you have any questions
+					or comments about my work, then feel free to <a href="mailto:trainorpj@gmail.com?subject=Careers of Directors">get in touch</a>.
+					</text>
+				</div>
+				<div style="position:absolute;right:5px;bottom:5px;">
+					<text style="color:black;">
+					<a href="https://www.sccs.swarthmore.edu/users/16/ptraino1" target="blank_">PJ Trainor</a>, 2016
+					</text>
+				</div>
 			</div>
 		</div>
 	</div>

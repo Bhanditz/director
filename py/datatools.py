@@ -12,10 +12,8 @@ def listBuilder(poplst, dirlist, role):
         for line in fileobject:     #goes line by line in file
             for elmt in dirlist:    #loops through names of directors
                 if elmt in line:    #locates a director
-                    if '(I)\t' in line:
-                        name_sep = line.split('(I)\t')
-                    if '|' in line:
-                        name_sep = line.split("|",1)
+                    #if '(I)\t' in line:
+                    #    name_sep = line.split('(I)\t')
                     if '\t\t' in line:
                         name_sep = line.split("\t\t")     #split director name
                     else:
@@ -23,13 +21,19 @@ def listBuilder(poplst, dirlist, role):
                     print line
                     print name_sep
                     print "---------------------------"
-                    title_sep = name_sep[1].split("(",1) #split title
+                    try:
+                        title_sep = name_sep[1].split("(",1) #split title
+                    except IndexError:
+                        continue
                     poplst.append(name_sep[0])          #add director name
                     cont = True
                     skip = checkYear(title_sep)         #check if first
                     if skip == True:                    #   title is trash
                         continue
-                    dummy=[title_sep[0][:-1], int(title_sep[1][:4])]
+                    try:
+                        dummy=[title_sep[0][:-1], int(title_sep[1][:4])]
+                    except ValueError:
+                        continue
                     poplst.append(dummy)               #add [first title, year]
             if cont== True:         #works for lines other than the first one
                 if line == '\n':

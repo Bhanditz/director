@@ -13,7 +13,7 @@ var bins = canvas.selectAll(".directorbin")
 			;
 var dirheight = $(".directorbin").height();
 
-	bins.style("top",function(d,i){return dirheight*i+"px";});
+	bins.style("top",function(d,i){return (10+dirheight)*i+"px";});
 			
 
 	

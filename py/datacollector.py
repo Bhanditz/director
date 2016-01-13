@@ -2,7 +2,13 @@ from datatools import listBuilder, filmEnter, dictAdd
 import io, codecs, json
 
 directors=["Chaplin, Charles", "Eastwood, Clint", "Kurosawa, Akira",
-"Scorsese, Martin", "Coen, Ethan", "Kubrick, Stanley", "Welles, Orson"]
+"Scorsese, Martin", "Coen, Ethan", "Kubrick, Stanley", "Welles, Orson",
+"Allen, Woody", "Spielberg, Steven","Hitchcock, Alfred (I)", "Bergman, Ingmar",
+"Godard, Jean-Luc", "Fellini, Federico", "Tarantino, Quentin",
+"Keaton, Buster (I)", "Bigelow, Kathryn", "Ephron, Nora", "Heckerling, Amy",
+"Lang, Fritz (I)", "Renoir, Jean", "Herzog, Werner (I)",
+"von Trier, Lars", "Rodriguez, Robert (I)"]
+
 json_master=[]
 
 
@@ -58,6 +64,16 @@ for elmt in json_master:
     rolecount=["dirno", "wrino","edino","prono","actno"]
     for i in range(len(rolecount)):
         elmt[rolecount[i]]=count[i]
+
+clearlst=[]
+cleardir=directors
+
+for elmt in json_master:
+    if elmt["name"] in cleardir:
+        cleardir.remove(elmt['name'])
+        clearlst.append(elmt)
+
+json_master=clearlst
 
 
 with io.open('data.json','w', encoding = 'utf-8') as f:
