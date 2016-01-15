@@ -1,5 +1,9 @@
 function makeLegend(){
 	
+	//var wHeight=window.innerHeight;
+	
+	//d3.select("#info").style("height",function(){return wHeight/2.0;});
+	
 	var legendbin= d3.select("#legend")
 			.append("svg").attr("width","100%")
 			.attr("height","100%")

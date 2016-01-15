@@ -12,6 +12,7 @@ body{
 	margin-left:30px;
 	width: 70%;
 	height: 180px;
+	margin-bottom: 10px;
 }
 
 #vis {
@@ -26,20 +27,21 @@ body{
 	top: 2%;
 	right: 3%;
 	width: 22%;
+	height: 100vh;
 	float: left;
 }
 
 #credit {
 	background-color: #BDC1BF;
 	width: 100%;
-	height: 120px;
+	height: 15%; /*120px;*/
 	margin-bottom: 20px;
 }
 
 #legend {
 	background-color: #BDC1BF;
 	width: 100%;
-	height: 160px;
+	height: 20%; /*160px;*/
 	float:bottom;
 	margin-bottom: 20px;
 }
@@ -47,9 +49,29 @@ body{
 #sorting {
 	background-color: #BDC1BF;
 	width: 100%;
-	height: 180px;
+	height: 25%; /*180px;*/
 	float:bottom;
 	margin-bottom: 20px;
+}
+
+#explain {
+	position:relative;
+	background-color: #BDC1BF;
+	width: 100%;
+	height: 25%;/*160px;*/
+	float:bottom;
+	font-family: Arial;
+	color: black;
+	font-size: 1.0em;
+	word-wrap: break-word;
+}
+
+.explaintext {
+	position:relative;
+	width: 95%;
+	left:10px;
+	top:5px;
+	word-wrap: break-word;
 }
 
 #sorting text{
@@ -73,6 +95,8 @@ li {
 	height: 40px;
 }
 
+
+
 button {
 	font-family: Arial;
 	color: #000000;
@@ -90,21 +114,13 @@ button:hover {
   text-decoration: none;
 }
 
-.edibutton:hover { background: #F5F756;}
+.edibutton:hover { background: #FFFD34;}
 .probutton:hover { background: #19D425;}
 .dirbutton:hover { background: #1BCCF8;}
 .wributton:hover { background: #FFAD07;}
 .actbutton:hover { background: #FC0066;}
 
-#explain {
-	background-color: #BDC1BF;
-	width: 100%;
-	height: 160px;
-	float:bottom;
-	font-family: Arial;
-	color: black;
-	font-size: 1.0em;
-}
+
 
 .directorbin {
 	position:absolute;

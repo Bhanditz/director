@@ -15,9 +15,6 @@ var dirheight = $(".directorbin").height();
 
 	bins.style("top",function(d,i){return (10+dirheight)*i+"px";});
 			
-
-	
-	
 	bins.append("text").text(function(d){return d.name;})
 		.attr("text-anchor","middle")
 		.attr("class","dirname")
@@ -47,33 +44,33 @@ var roles = ["Director", "Writer", "Producer", "Editor", "Actor"];
 //scaleMaker makes a scale for each bin
 //Note that len goes up a level with select(this.parentNode)
 var groups =directors.selectAll("svg")
-				.data(function(d){return d.films;})
-				.enter().append("g")
-				.attr("transform", function(d,i){
-					var len = d3.select(this.parentNode).data()[0].nofilms;
-					return "translate(" + scaleMaker(i,binwidth,len)+",0)";
-				})
-				.on("mouseover", function(d){
-					
-					var infohold = d3.select("#credit")
-					var texthold = infohold.append("svg")
-									.attr("width","100%").attr("height","100%")
-									.attr("class","detail")
-									.append("text").attr("x",10).attr("y",10);
-					
-					var dirname = d3.select(this.parentNode).data()[0].name;
-					
-					texthold.append("tspan").text(dirname).attr("x",10).attr("dy",20);				
-					texthold.append("tspan").text(d.title).attr("x",10).attr("dy",30);
-					texthold.append("tspan").text(d.year).attr("x",10).attr("dy",20);
-					texthold.append("tspan").text(d.credits).attr("x",10).attr("dy",20);
-					
-					
-				})
-				.on("mouseout", function(d){
-					d3.selectAll(".detail").remove();
-				})
-				;
+		.data(function(d){return d.films;})
+		.enter().append("g")
+		.attr("transform", function(d,i){
+			var len = d3.select(this.parentNode).data()[0].nofilms;
+			return "translate(" + scaleMaker(i,binwidth,len)+",0)";
+		})
+		.on("mouseover", function(d){
+			
+			var infohold = d3.select("#credit")
+			var texthold = infohold.append("svg")
+							.attr("width","100%").attr("height","100%")
+							.attr("class","detail")
+							.append("text").attr("x",10).attr("y",5);
+			
+			var dirname = d3.select(this.parentNode).data()[0].name;
+			
+			texthold.append("tspan").text(dirname).attr("x",10).attr("dy",20);				
+			texthold.append("tspan").text(d.title).attr("x",10).attr("dy",30);
+			texthold.append("tspan").text(d.year).attr("x",10).attr("dy",20);
+			texthold.append("tspan").text(d.credits).attr("x",10).attr("dy",20);
+			
+			
+		})
+		.on("mouseout", function(d){
+			d3.selectAll(".detail").remove();
+		})
+		;
 				
 
 				
@@ -111,7 +108,7 @@ function circleColor(d){
 	} else if ( d == "writer"){
 		return "#FFAD07" ;
 	} else if ( d == "editor"){
-		return "#F5F756";
+		return "#FFFD34";
 	} else if (d == "producer"){
 		return "#19D425";
 	} else if (d == "actor"){

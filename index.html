@@ -11,6 +11,7 @@
 	<script src="js/d3-code.js"></script>
 	<script src="js/legend.js"></script>
 	<script src="js/sortfuncs.js"></script>
+	<script src="js/flowtype.js"></script>
 
 </head>
 <body>
@@ -18,7 +19,7 @@
 		<div id="body">
 			<div id="intro" align="center">
 				<h1> Careers of Directors</h1>
-				<text style="color:black;">In making a film, directors do a little bit of everything. They get behind the camera, they work with the editors, and communicate with actors. Some directors have a particularly deep involvement in their films&mdash;sometimes they're a producer or an actor. Here we have the profiles of several directors; each of their films are ordered chronologically, and you can get more information on a film if you hover over the dots. There are 25 directors from a variety of countries and times periods.
+				<text style="color:black;">In making a film, directors do a little bit of everything. They get behind the camera, they work with the editors, and communicate with actors. Some directors have a particularly deep involvement in their films&mdash;sometimes they're a producer or an actor. Here we have the profiles of several directors; each of their films are ordered chronologically, and you can get more information on a film if you hover over the dots. There are 25 directors from a variety of countries and time periods.
 				</text>
 			
 			</div>
@@ -43,7 +44,7 @@
 				</div>
 			</div>
 			<div id="explain">
-				<div style="position:relative;left:10px;top:5px;">
+				<div class="explaintext">
 					<text style="color:black;">
 					The data was taken from 
 					<a href="ftp://ftp.fu-berlin.de/pub/misc/movies/database/" target="blank_">Imdb</a>,
@@ -54,7 +55,7 @@
 					or comments about my work, then feel free to <a href="mailto:trainorpj@gmail.com?subject=Careers of Directors">get in touch</a>.
 					</text>
 				</div>
-				<div style="position:absolute;right:5px;bottom:5px;">
+				<div style="position:absolute;right:5%;bottom:5%;">
 					<text style="color:black;">
 					<a href="https://www.sccs.swarthmore.edu/users/16/ptraino1" target="blank_">PJ Trainor</a>, 2016
 					</text>
@@ -66,6 +67,12 @@
 	<script>
 	draw();
 	makeLegend();
+	$("#sorting, #explain").flowtype({
+		fontRatio : 22
+	});
+	$("#credit").flowtype({
+		fontRatio : 23
+	});
 	</script>
 </body>
 </html>
